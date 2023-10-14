@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <base href="/public" />
     @include('admin.css')
 </head>
 
@@ -28,45 +29,53 @@
                             <div class="card-body">
                                 <h4 class="card-title">Add Product</h4>
                                 <p class="card-description"> Fill the form to add product </p>
-                                <form action="{{ url('/add_product') }}" method="POST" enctype="multipart/form-data"
-                                    class="forms-sample" method="POST" action="{{ url('add_category') }}">
+                                <form class="forms-sample" 
+                                action="{{ url('/confirm_update_product', $product->id) }}"
+                                enctype="multipart/form-data"
+                                method="POST"
+                                    >
                                     @csrf
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Title*</label>
                                         <input type="text" name="title" class="form-control"
-                                            id="exampleInputUsername1" placeholder="category">
+                                            id="exampleInputUsername1" placeholder="category"
+                                            value="{{ $product->title }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Description</label>
                                         <input type="text" name="description" class="form-control"
-                                            id="exampleInputUsername1" placeholder="Description">
+                                            id="exampleInputUsername1" placeholder="Description"
+                                            value="{{ $product->description }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Price*</label>
                                         <input type="number" name="price" class="form-control"
-                                            id="exampleInputUsername1" placeholder="">
+                                            id="exampleInputUsername1" placeholder="" value="{{ $product->price }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Quantity</label>
                                         <input type="number" name="Quantity" class="form-control"
-                                            id="exampleInputUsername1" placeholder="">
+                                            id="exampleInputUsername1" placeholder="" value="{{ $product->quantity }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Discount Price</label>
                                         <input type="text" name="dicount_price" class="form-control"
-                                            id="exampleInputUsername1" placeholder="">
+                                            id="exampleInputUsername1" placeholder=""
+                                            value="{{ $product->dicount_price }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleSelectGender">Gender</label>
-                                        <select name="category" class="form-control" id="exampleSelectGender">
+                                        <select value="{{ $product->category }}" name="category" class="form-control"
+                                            id="exampleSelectGender">
                                             @foreach ($category as $category)
-                                                <option value="{{ $category->category_name }}">{{ $category->category_name }}</option>
+                                                <option value="{{ $category->category_name }}">
+                                                    {{ $category->category_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>File upload</label>
-                                        <input type="file" name="images" required class="file-upload-default">
+                                        <input type="file" name="images" class="file-upload-default">
                                         <div class="input-group col-xs-12">
                                             <input type="text" class="form-control file-upload-info" disabled
                                                 placeholder="Upload Image">
@@ -75,6 +84,7 @@
                                                     type="button">Upload</button>
                                             </span>
                                         </div>
+                                        <img src="product/{{ $product->images }}" />
                                     </div>
                                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 </form>

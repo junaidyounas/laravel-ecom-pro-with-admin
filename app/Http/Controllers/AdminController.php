@@ -43,15 +43,57 @@ class AdminController extends Controller
         $product->discount_price = $request->discount_price;
         $product->quantity = $request->quantity;
 
-        $image = $request->image;
-        $imagename=time().'.'.$image->getClientOriginalExtension();
-        $request->image->move('product', $imagename);
-        $product->image=$imagename;
+        $file = $request->file('images');
+        $extension = $file->getClientOriginalExtension();
+        $imagename=time().'.'.$extension;
+        $request->images->move('product', $imagename);
+        $product->images=$imagename;
 
         $product->save();
 
         return redirect()->back()->with('message', 'Product added successfully');
 
 
+    }
+
+    public function all_products(){
+        $products = Product::all();
+        return view('admin.all_products', compact('products'));
+    }
+
+    public function delete_product($id){
+        $data = Product::find($id);
+        $data->delete();
+        return redirect()->back()->with('message', 'Product deleted successfully');
+    }
+
+    public function edit_product($id)
+    {
+        $product = Product::find($id);
+        $category = Category::all();
+        
+        return view('admin.edit_product', compact('category', 'product'));
+    }
+
+    public function confirm_update_product(Request $request, $id){
+        $product = Product::find($id);
+        $product->title = $request->title;
+        $product->description = $request->description;;
+        $product->category = $request->category;
+        $product->price = $request->price;
+        $product->discount_price = $request->discount_price;
+        $product->quantity = $request->quantity;
+
+        $file = $request->file('images');
+        if($file){
+            $extension = $file->getClientOriginalExtension();
+            $imagename = time() . '.' . $extension;
+            $request->images->move('product', $imagename);
+            $product->images = $imagename;
+        }
+
+        $product->save();
+
+        return redirect()->back()->with('message', 'Product updated successfully');
     }
 }
