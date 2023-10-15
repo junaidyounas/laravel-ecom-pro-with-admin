@@ -96,11 +96,11 @@
                                             value="{{ $product->discount_price }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleSelectGender">Gender</label>
-                                        <select value="{{ $product->category }}" name="category" class="form-control"
+                                        <label for="exampleSelectGender">Category</label>
+                                        <select default={{$product->category->id}} value="{{ $product->category->id }}" name="category" class="form-control"
                                             id="exampleSelectGender">
                                             @foreach ($category as $category)
-                                                <option value="{{ $category->category_name }}">
+                                                <option value="{{ $category->id }}">
                                                     {{ $category->category_name }}</option>
                                             @endforeach
                                         </select>
