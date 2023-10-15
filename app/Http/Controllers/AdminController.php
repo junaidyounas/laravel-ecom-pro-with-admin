@@ -48,7 +48,7 @@ class AdminController extends Controller
 
         $product->title = $request->title;
         $product->description = $request->description;
-        $product->category = $request->category;
+        $product->category_id = $request->category;
         $product->price = $request->price;
         $product->discount_price = $request->discount_price;
         $product->quantity = $request->quantity;
@@ -86,7 +86,6 @@ class AdminController extends Controller
     public function all_products()
     {
         $products = Product::all();
-        Log::info('Logging an array', ['data' => $products]);
         return view('admin.all_products', compact('products'));
     }
 

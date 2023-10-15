@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ProductImage;
+use App\Models\Category;
 class Product extends Model
 {
     use HasFactory;
@@ -13,10 +14,10 @@ class Product extends Model
     protected $fillable = [
         'title',
         'description',
-        'category',
         'price',
         'discount_price',
         'quantity',
+        'category'
     ];
 
     protected static function boot()
@@ -33,6 +34,11 @@ class Product extends Model
                 }
             }
         });
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function images()
