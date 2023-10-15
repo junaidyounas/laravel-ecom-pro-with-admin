@@ -93,14 +93,6 @@ class AdminController extends Controller
     public function delete_product($id)
     {
         $data = Product::find($id);
-        // Manually delete associated images
-        foreach ($data->images as $image) {
-            $imagePath = public_path('product_images/'.$image->image_name);
-
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
-            }
-        }
 
         // Now delete the product
         $data->delete();
@@ -118,20 +110,29 @@ class AdminController extends Controller
     public function confirm_update_product(Request $request, $id)
     {
         $product = Product::find($id);
+
         $product->title = $request->title;
         $product->description = $request->description;
-        ;
         $product->category = $request->category;
         $product->price = $request->price;
         $product->discount_price = $request->discount_price;
         $product->quantity = $request->quantity;
 
-        $file = $request->file('images');
-        if ($file) {
-            $extension = $file->getClientOriginalExtension();
-            $imagename = time() . '.' . $extension;
-            $request->images->move('product', $imagename);
-            $product->images = $imagename;
+        // Handle image uploads (appending new images)
+        if ($request->hasFile('images')) {
+
+            foreach ($request->file('images') as $file) {
+                $originalName = $file->getClientOriginalName();
+                $imageName = time() . '_' . $originalName;
+                // Save the new image to the 'product_images' folder
+                $file->move('product_images', $imageName);
+                // Create a new ProductImage record
+                $image = new ProductImage();
+                $image->product_id = $product->id; // Associate the image with the product
+                $image->image_name = $imageName;
+                $image->save();
+            }
+
         }
 
         $product->save();

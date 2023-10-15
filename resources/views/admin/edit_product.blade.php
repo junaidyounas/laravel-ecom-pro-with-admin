@@ -4,6 +4,41 @@
 <head>
     <base href="/public" />
     @include('admin.css')
+    <style>
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .image-container {
+            position: relative;
+            padding-right: 10px;
+        }
+
+        img {
+            width: 200px;
+            height: 130px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .delete-button {
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,16 +64,13 @@
                             <div class="card-body">
                                 <h4 class="card-title">Add Product</h4>
                                 <p class="card-description"> Fill the form to add product </p>
-                                <form class="forms-sample" 
-                                action="{{ url('/confirm_update_product', $product->id) }}"
-                                enctype="multipart/form-data"
-                                method="POST"
-                                    >
+                                <form class="forms-sample" enctype="multipart/form-data" method="POST"
+                                    action="{{ url('/confirm_update_product', $product->id) }}">
                                     @csrf
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Title*</label>
                                         <input type="text" name="title" class="form-control"
-                                            id="exampleInputUsername1" placeholder="category"
+                                            id="exampleInputUsername1" placeholder="Title"
                                             value="{{ $product->title }}">
                                     </div>
                                     <div class="form-group">
@@ -54,14 +86,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Quantity</label>
-                                        <input type="number" name="Quantity" class="form-control"
+                                        <input type="number" name="quantity" class="form-control"
                                             id="exampleInputUsername1" placeholder="" value="{{ $product->quantity }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Discount Price</label>
-                                        <input type="text" name="dicount_price" class="form-control"
+                                        <input type="text" name="discount_price" class="form-control"
                                             id="exampleInputUsername1" placeholder=""
-                                            value="{{ $product->dicount_price }}">
+                                            value="{{ $product->discount_price }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleSelectGender">Gender</label>
@@ -75,7 +107,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>File upload</label>
-                                        <input type="file" name="images" class="file-upload-default">
+                                        <input type="file" name="images[]" class="file-upload-default" multiple>
                                         <div class="input-group col-xs-12">
                                             <input type="text" class="form-control file-upload-info" disabled
                                                 placeholder="Upload Image">
@@ -84,10 +116,22 @@
                                                     type="button">Upload</button>
                                             </span>
                                         </div>
-                                        <img src="product/{{ $product->images }}" />
                                     </div>
                                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 </form>
+
+                                <div class="image-gallery">
+                                    @foreach ($product->images as $img)
+                                        <div class="image-container">
+                                            <img src="product_images/{{ $img->image_name }}" />
+                                            <form method="post" action="{{ url('/delete-image', $img->id) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="delete-button">X</button>
+                                            </form>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>

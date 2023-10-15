@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Title*</label>
                                         <input type="text" name="title" class="form-control"
-                                            id="exampleInputUsername1" placeholder="category">
+                                            id="exampleInputUsername1" placeholder="Title">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Description</label>
@@ -48,12 +48,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Quantity</label>
-                                        <input type="number" name="Quantity" class="form-control"
+                                        <input type="number" name="quantity" class="form-control"
                                             id="exampleInputUsername1" placeholder="">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Discount Price</label>
-                                        <input type="text" name="dicount_price" class="form-control"
+                                        <input type="text" name="discount_price" class="form-control"
                                             id="exampleInputUsername1" placeholder="">
                                     </div>
                                     <div class="form-group">

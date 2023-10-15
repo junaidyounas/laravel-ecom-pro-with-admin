@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
@@ -38,3 +39,4 @@ route::get('/all_products', [AdminController::class, 'all_products']);
 route::get('/delete_product/{id}', [AdminController::class, 'delete_product']);
 route::get('/edit_product/{id}', [AdminController::class, 'edit_product']);
 route::post('/confirm_update_product/{id}', [AdminController::class, 'confirm_update_product']);
+route::delete('/delete-image/{id}', [ImageController::class, 'deleteImage']);
