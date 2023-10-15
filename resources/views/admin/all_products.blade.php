@@ -27,6 +27,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">All Products</h4>
+                               
                                 <p class="card-description"> Edit and delete product
                                 </p>
                                 <div class="table-responsive">
@@ -55,7 +56,8 @@
                                                     <td>{{ $product->category }}</td>
                                                     <td>{{ $product->description }}</td>
                                                     <td>{{ $product->quantity }}</td>
-                                                    <td>{{ $product->images }}</td>
+                                                    {{-- <td>{{ \Illuminate\Support\Str::limit($product->images, 20, '...') }}</td> --}}
+                                                    <td><img width="30px" height="30px" src="product_images/{{collect($product->images)->first()->image_name}}" /></td>
                                                     <td>{{ \Carbon\Carbon::parse($product->created_at)->format('d F Y') }}
                                                     </td>
                                                     <td><a

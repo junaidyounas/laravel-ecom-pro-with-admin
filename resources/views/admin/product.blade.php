@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>File upload</label>
-                                        <input type="file" name="images" required class="file-upload-default">
+                                        <input type="file" name="images[]" required class="file-upload-default" multiple>
                                         <div class="input-group col-xs-12">
                                             <input type="text" class="form-control file-upload-info" disabled
                                                 placeholder="Upload Image">
