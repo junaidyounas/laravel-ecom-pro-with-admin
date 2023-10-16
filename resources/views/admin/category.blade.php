@@ -31,9 +31,9 @@
                                 <form class="forms-sample" method="POST" action="{{ url('add_category') }}">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="exampleInputUsername1">Category</label>
+                                        <label for="">Category</label>
                                         <input type="text" name="category_name" class="form-control"
-                                            id="exampleInputUsername1" placeholder="category">
+                                            id="" placeholder="Category">
                                     </div>
                                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 </form>

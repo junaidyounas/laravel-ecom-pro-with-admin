@@ -8,7 +8,7 @@ use App\Models\Product;
 
 class Category extends Model
 {
-    protected $fillable = ['category_name', 'id'];
+    protected $fillable = ['category_name'];
 
     use HasFactory;
     public function products()

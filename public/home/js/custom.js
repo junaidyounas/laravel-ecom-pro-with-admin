@@ -44,3 +44,16 @@ function myMap() {
     };
     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 }
+
+
+// // Prevent scroll to top on link click
+// document.addEventListener('DOMContentLoaded', function () {
+//     const links = document.querySelectorAll('a');
+
+//     links.forEach(function (link) {
+//         link.addEventListener('click', function (e) {
+//             e.preventDefault(); // Prevent the default behavior of the link
+//             window.location.href = this.getAttribute('href'); // Manually navigate to the link's URL
+//         });
+//     });
+// });

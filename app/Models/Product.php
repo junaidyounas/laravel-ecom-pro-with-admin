@@ -17,7 +17,7 @@ class Product extends Model
         'price',
         'discount_price',
         'quantity',
-        'category'
+        'category_id'
     ];
 
     protected static function boot()

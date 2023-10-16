@@ -32,6 +32,8 @@ class AdminController extends Controller
     public function delete_category($id)
     {
         $data = Category::find($id);
+        // Delete the category and its associated products
+        $data->products()->delete();
         $data->delete();
         return redirect()->back()->with('message', 'Category deleted successfully');
     }

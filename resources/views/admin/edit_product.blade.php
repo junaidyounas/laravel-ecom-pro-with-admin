@@ -8,6 +8,8 @@
         .image-gallery {
             display: flex;
             flex-wrap: wrap;
+            margin-top: 10px;
+            margin-bottom: 12px;
         }
 
         .image-container {
@@ -64,6 +66,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Add Product</h4>
                                 <p class="card-description"> Fill the form to add product </p>
+
                                 <form class="forms-sample" enctype="multipart/form-data" method="POST"
                                     action="{{ url('/confirm_update_product', $product->id) }}">
                                     @csrf
@@ -97,14 +100,16 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleSelectGender">Category</label>
-                                        <select default={{$product->category->id}} value="{{ $product->category->id }}" name="category" class="form-control"
-                                            id="exampleSelectGender">
+                                        <select value="{{ $product->category->id }}" name="category"
+                                            class="form-control" id="exampleSelectGender">
                                             @foreach ($category as $category)
-                                                <option value="{{ $category->id }}">
+                                                <option value="{{ $category->id }}"
+                                                    {{ $product->category->id == $category->id ? 'selected' : '' }}>
                                                     {{ $category->category_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
+
                                     <div class="form-group">
                                         <label>File upload</label>
                                         <input type="file" name="images[]" class="file-upload-default" multiple>
@@ -119,7 +124,6 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 </form>
-
                                 <div class="image-gallery">
                                     @foreach ($product->images as $img)
                                         <div class="image-container">
@@ -132,6 +136,7 @@
                                         </div>
                                     @endforeach
                                 </div>
+
                             </div>
                         </div>
                     </div>
