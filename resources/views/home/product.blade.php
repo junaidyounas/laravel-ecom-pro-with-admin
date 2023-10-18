@@ -1,10 +1,10 @@
 <section class="product_section layout_padding">
     <div class="container">
-        <div class="heading_container heading_center">
+        {{-- <div class="heading_container heading_center">
             <h2>
                 Our <span>products</span>
             </h2>
-        </div>
+        </div> --}}
         <div class="row">
             @foreach ($products ?? [] as $product)
                 <div class="col-sm-6 col-md-4 col-lg-4">

@@ -13,7 +13,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <link rel="shortcut icon" href="images/favicon.png" type="">
-    <title>Famms - Fashion HTML Template</title>
+    <title>FARIG - Shopping Center</title>
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
     <!-- font awesome style -->
@@ -88,7 +88,7 @@
 
         .card {
             margin-top: 50px;
-            background: #eee;
+            background: white;
             padding: 3em;
             line-height: 1.5em;
         }
@@ -254,27 +254,24 @@
             <div class="container-fliud">
                 <div class="wrapper row">
                     <div class="p-d-slider-preview col-md-6">
-
-                        <div class="preview-pic tab-content">
-                            <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" />
+                        @if ($product->images && is_iterable($product->images))
+                            <div class="preview-pic tab-content">
+                                @foreach ($product->images as $key => $img)
+                                    <div class="tab-pane{{ $key == 0 ? ' active' : '' }}" id="pic-{{ $key + 1 }}">
+                                        <img style="height: 400px; object-fit: cover;" src="/product_images/{{ $img->image_name }}" />
+                                    </div>
+                                @endforeach
                             </div>
-                            <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
-                            <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
-                            <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
-                            <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
-                        </div>
-                        <ul class="preview-thumbnail nav nav-tabs">
-
-                            @if ($product->image && is_iterable($product->images))
+                            <ul class="preview-thumbnail nav nav-tabs">
                                 @foreach ($product->images as $key => $img)
                                     <li class="{{ $key == 0 ? 'active' : '' }}">
                                         <a data-target="#pic-{{ $key + 1 }}" data-toggle="tab">
-                                            <img src="http://placekitten.com/200/126" />
+                                            <img style="object-fit: cover; height: 70px; width: 120px;" src="/product_images/{{ $img->image_name }}" />
                                         </a>
                                     </li>
                                 @endforeach
-                            @endif
-                        </ul>
+                            </ul>
+                        @endif
 
                         {{-- <ul class="preview-thumbnail nav nav-tabs">
                             <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
@@ -291,7 +288,7 @@
 
                     </div>
                     <div class="details col-md-6">
-                        <h3 class="product-title">men's shoes fashion</h3>
+                        <h3 class="product-title">{{$product->title}}</h3>
                         {{-- <div class="rating">
                             <div class="stars">
                                 <span class="fa fa-star checked"></span>
@@ -302,11 +299,10 @@
                             </div>
                             <span class="review-no">41 reviews</span>
                         </div> --}}
-                        <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium
-                            cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
-                        <h4 class="price">current price: <span>$180</span></h4>
-                        <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87
-                                votes)</strong></p>
+                        <h4 class="price">Price: <span>Rs {{$product->price}}</span></h4>
+                        <p class="product-description">{{$product->description}}</p>
+                        {{-- <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87
+                                votes)</strong></p> --}}
                         {{-- <h5 class="sizes">sizes:
                             <span class="size" data-toggle="tooltip" title="small">s</span>
                             <span class="size" data-toggle="tooltip" title="medium">m</span>
