@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Validation\Rule;
+
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -24,11 +26,18 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+            'shop_name' => [
+            'required',
+            'string',
+            'max:255',
+            Rule::unique('users', 'shop_name'), // Check uniqueness against the 'users' table and 'shop_name' column
+        ],
         ])->validate();
 
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
+            'shop_name' => $input['shop_name'],
             'phone' => $input['phone'],
             'address' => $input['address'],
             'password' => Hash::make($input['password']),
