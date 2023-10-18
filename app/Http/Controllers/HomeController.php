@@ -25,4 +25,10 @@ class HomeController extends Controller
             return view('home.userpage');
         }
     }
+
+    public function product_detail($id){
+        $product = Product::find($id);
+
+        return view('home.product_detail', compact('product'));
+    }
 }

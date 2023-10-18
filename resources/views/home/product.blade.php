@@ -6,12 +6,12 @@
             </h2>
         </div>
         <div class="row">
-            @foreach ($products as $product)
+            @foreach ($products ?? [] as $product)
                 <div class="col-sm-6 col-md-4 col-lg-4">
                     <div class="box">
                         <div class="option_container">
                             <div class="options">
-                                <a href="" class="option1">
+                                <a href="{{url('product_detail', $product->id)}}" class="option1">
                                     {{ $product->title }}
                                 </a>
                                 <a href="" class="option2">
@@ -53,8 +53,10 @@
                 </div>
             @endforeach
         </div>
+        @if(isset($products))
         <div style="margin-top: 60px;">
-            {!! $products->withQueryString()->links('pagination::bootstrap-5') !!}
+            {!! $products??[]->withQueryString()->links('pagination::bootstrap-5') !!}
         </div>
+        @endif
     </div>
 </section>
