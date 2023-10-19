@@ -17,13 +17,17 @@ class HomeController extends Controller
 
     public function redirect(){
 
+        if (Auth::check()) {
         $usertype = Auth::user()->usertype;
 
-        if($usertype == '1'){
-            return view('admin.home');
-        }else{
-            return view('home.userpage');
+                if($usertype == '1'){
+                    return view('admin.home');
+                }else{
+                    return view('home.userpage');
+                }
         }
+
+        
     }
 
     public function product_detail($id){
