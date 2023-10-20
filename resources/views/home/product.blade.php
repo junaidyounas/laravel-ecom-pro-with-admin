@@ -11,16 +11,25 @@
                     <div class="box">
                         <div class="option_container">
                             <div class="options">
-                                <a href="{{url('product_detail', $product->id)}}" class="option1">
+                                <a href="{{ url('product_detail', $product->id) }}" class="option1">
                                     {{ $product->title }}
                                 </a>
                                 <a href="" class="option2">
                                     Buy Now
                                 </a>
+                                <form  style="background: transparent; border: none;" method="POST" action="{{ url('add_to_cart', $product->id) }}" class="option2">
+                                    @csrf {{-- Add a CSRF token to the form for security --}}
+                                    <button style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;" type="submit">
+                                        <a class="option2">
+                                            Add to Cart
+                                        </a>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <div class="img-box">
-                            <img src="product_images/{{ collect($product->images)->first()->image_name }}" alt="">
+                            <img src="product_images/{{ collect($product->images)->first()->image_name }}"
+                                alt="">
                             @php
                                 $discountPercentage = round((($product->price - $product->discount_price) / $product->price) * 100);
                             @endphp
@@ -53,10 +62,10 @@
                 </div>
             @endforeach
         </div>
-        @if(isset($products))
-        <div style="margin-top: 60px;">
-            {!! $products??[]->withQueryString()->links('pagination::bootstrap-5') !!}
-        </div>
+        @if (isset($products))
+            <div style="margin-top: 60px;">
+                {!! $products ?? ([])->withQueryString()->links('pagination::bootstrap-5') !!}
+            </div>
         @endif
     </div>
 </section>
