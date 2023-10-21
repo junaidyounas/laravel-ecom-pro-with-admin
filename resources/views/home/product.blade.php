@@ -17,7 +17,7 @@
                                 <a href="" class="option2">
                                     Buy Now
                                 </a>
-                                <form  style="background: transparent; border: none;" method="POST" action="{{ url('add_to_cart', $product->id) }}" class="option2">
+                                <form  style="background: transparent; border: none;" method="POST" action="{{ url('cart/add', $product->id) }}" class="option2">
                                     @csrf {{-- Add a CSRF token to the form for security --}}
                                     <button style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;" type="submit">
                                         <a class="option2">

@@ -4,9 +4,7 @@
             <div class="col-md-4">
                 <div class="full">
                     <div class="logo_footer">
-                        <a href="#">
-                            FARIG
-                        </a>
+                        <img src="logo.png" height="70" />
                     </div>
                     <div class="information_f">
                         <p><strong>ADDRESS:</strong> Lahore, Pakistan</p>

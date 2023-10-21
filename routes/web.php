@@ -42,5 +42,9 @@ route::get('/delete_product/{id}', [AdminController::class, 'delete_product']);
 route::get('/edit_product/{id}', [AdminController::class, 'edit_product']);
 route::post('/confirm_update_product/{id}', [AdminController::class, 'confirm_update_product']);
 route::delete('/delete-image/{id}', [ImageController::class, 'deleteImage']);
-
-route::post('/add_to_cart/{id}', [CartController::class, 'add_to_cart']);
+ 
+Route::get('/cart', [CartController::class, 'index']);
+Route::post('/cart/add/{id}', [CartController::class, 'add']);
+Route::post('/cart/remove/{id}', [CartController::class, 'remove']);
+Route::get('/checkout', 'OrderController@index')->name('checkout.index');
+Route::post('/checkout', 'OrderController@store')->name('checkout.store');
