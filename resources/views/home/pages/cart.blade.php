@@ -229,47 +229,70 @@
                                                 <hr class="mt-0">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="NAME" class="small text-muted mb-1">NAME</label>
-                                            <input type="text" class="form-control form-control-sm" name="name"
-                                                id="NAME" aria-describedby="helpId" placeholder="Name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="PHONE" class="small text-muted mb-1">PHONE</label>
-                                            <input type="number" class="form-control form-control-sm" name="phone"
-                                                id="NAME" aria-describedby="helpId" placeholder="Phone number">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ADDRESS" class="small text-muted mb-1">ADDRESS</label>
-                                            <input type="text" class="form-control form-control-sm" name="address"
-                                                id="NAME" aria-describedby="helpId" placeholder="Address">
-                                        </div>
-                                        <div class="row no-gutters">
-                                            <div class="col-sm-6 pr-sm-2">
-                                                <div class="form-group">
-                                                    <label for="POST CODE" class="small text-muted mb-1">Postal
-                                                        Code</label>
-                                                    <input type="text" class="form-control form-control-sm"
-                                                        name="postal_code" id="NAME" aria-describedby="helpId"
-                                                        placeholder="Enter your post code">
+                                        <form method="POST" action="{{ url('place-order') }}">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="NAME" class="small text-muted mb-1">NAME</label>
+                                                <input
+                                                    value="{{ $user->name ?? '' }}"
+                                                    type="text" class="form-control form-control-sm" name="name"
+                                                    id="NAME" aria-describedby="helpId" placeholder="Name"
+                                                    required>
+                                                @error('name')
+                                                    <span class="text-danger small">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="PHONE" class="small text-muted mb-1">PHONE</label>
+                                                <input
+                                                    value="{{ $user->phone ?? '' }}"
+                                                    type="text" class="form-control form-control-sm" name="phone"
+                                                    id="NAME" aria-describedby="helpId" placeholder="Phone number"
+                                                    required>
+                                                @error('phone')
+                                                    <span class="text-danger small">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ADDRESS" class="small text-muted mb-1">ADDRESS</label>
+                                                <input
+                                                    value="{{ $user->address ?? '' }}"
+                                                    type="text" class="form-control form-control-sm" name="address"
+                                                    id="NAME" aria-describedby="helpId" placeholder="Address"
+                                                    required>
+                                                @error('address')
+                                                    <span class="text-danger small">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="row no-gutters">
+                                                <div class="col-sm-6 pr-sm-2">
+                                                    <div class="form-group">
+                                                        <label for="POST CODE" class="small text-muted mb-1">Postal
+                                                            Code</label>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            name="postal_code" id="NAME"
+                                                            aria-describedby="helpId"
+                                                            value="{{ $user->post_code ?? '' }}"
+                                                            placeholder="Enter your post code">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="PROVINCE"
+                                                            class="small text-muted mb-1">PROVINCE</label>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            name="province" id="NAME" aria-describedby="helpId"
+                                                            placeholder="Enter your province" required value="{{ $user->post_code ?? '' }}">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="PROVINCE"
-                                                        class="small text-muted mb-1">PROVINCE</label>
-                                                    <input type="text" class="form-control form-control-sm"
-                                                        name="province" id="NAME" aria-describedby="helpId"
-                                                        placeholder="Enter your province">
+                                            <div class="row mb-md-5">
+                                                <div class="col">
+                                                    <button type="submit" name="" id=""
+                                                        class="btn  btn-lg btn-block ">PURCHASE NOW</button>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row mb-md-5">
-                                            <div class="col">
-                                                <button type="button" name="" id=""
-                                                    class="btn  btn-lg btn-block ">PURCHASE NOW</button>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -282,50 +305,51 @@
                                         <hr class="my-2">
                                     </div>
                                     <div class="card-body pt-0">
-                                        @isset($items) 
-                                        @foreach ($items as $item)
-                                            <hr class="my-2">
-                                            <div class="row  justify-content-between">
-                                                <div class="col-auto col-md-7">
-                                                    <div class="media flex-column flex-sm-row">
-                                                        <img class=" img-fluid " style="padding-right: 20px;"
-                                                            src="product_images/{{ collect($item->product->images)->first()->image_name }}"
-                                                            width="80" height="80">
-                                                        <div class="media-body  my-auto">
-                                                            <div class="row ">
-                                                                <div class="col">
-                                                                    <p class="mb-0">
-                                                                        <b>{{ $item->product->title }}</b>
-                                                                    </p>
-                                                                    <small
-                                                                        class="text-muted">{{ strlen($item->product->description) > 100 ? substr($item->product->description, 0, 100) . '...' : $item->product->description }}</small>
+                                        @isset($items)
+                                            @foreach ($items as $item)
+                                                <hr class="my-2">
+                                                <div class="row  justify-content-between">
+                                                    <div class="col-auto col-md-7">
+                                                        <div class="media flex-column flex-sm-row">
+                                                            <img class=" img-fluid " style="padding-right: 20px;"
+                                                                src="product_images/{{ collect($item->product->images)->first()->image_name }}"
+                                                                width="80" height="80">
+                                                            <div class="media-body  my-auto">
+                                                                <div class="row ">
+                                                                    <div class="col">
+                                                                        <p class="mb-0">
+                                                                            <b>{{ $item->product->title }}</b>
+                                                                        </p>
+                                                                        <small
+                                                                            class="text-muted">{{ strlen($item->product->description) > 100 ? substr($item->product->description, 0, 100) . '...' : $item->product->description }}</small>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="pl-0 flex-sm-col col-auto  my-auto">
-                                                    <p class="boxed">{{ $item->quantity ?? '' }}</p>
-                                                </div>
-                                                <div class="pl-0 flex-sm-col col-auto my-auto">
-                                                    <p><b>{{ $item->product->price ?? '' }} Rs</b></p>
-                                                </div>
-                                                <form style="background: transparent; border: none;" method="POST"
-                                                    action="{{ url('cart/remove', $item->product->id) }}" class="option2">
-                                                    @csrf {{-- Add a CSRF token to the form for security --}}
-                                                    <div class="pl-0 flex-sm-col col-auto my-auto ">
-                                                        <button
-                                                            style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;"
-                                                            type="submit">
-                                                            <a style="color: #fff" class="option2 boxed">
-                                                                x
-                                                            </a>
-                                                        </button>
+                                                    <div class="pl-0 flex-sm-col col-auto  my-auto">
+                                                        <p class="boxed">{{ $item->quantity ?? '' }}</p>
                                                     </div>
+                                                    <div class="pl-0 flex-sm-col col-auto my-auto">
+                                                        <p><b>{{ $item->product->price ?? '' }} Rs</b></p>
+                                                    </div>
+                                                    <form style="background: transparent; border: none;" method="POST"
+                                                        action="{{ url('cart/remove', $item->product->id) }}"
+                                                        class="option2">
+                                                        @csrf {{-- Add a CSRF token to the form for security --}}
+                                                        <div class="pl-0 flex-sm-col col-auto my-auto ">
+                                                            <button
+                                                                style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;"
+                                                                type="submit">
+                                                                <a style="color: #fff" class="option2 boxed">
+                                                                    x
+                                                                </a>
+                                                            </button>
+                                                        </div>
 
-                                                </form>
-                                            </div>
-                                        @endforeach
+                                                    </form>
+                                                </div>
+                                            @endforeach
                                         @endisset
                                         <hr class="my-2">
                                         <div class="row ">
@@ -335,7 +359,11 @@
                                                         <p class="mb-1"><b>Subtotal</b></p>
                                                     </div>
                                                     <div class="flex-sm-col col-auto">
-                                                        <p class="mb-1"><b>@isset($subtotal) {{ $subtotal }} @endisset Rs</b></p>
+                                                        <p class="mb-1"><b>
+                                                                @isset($subtotal)
+                                                                    {{ $subtotal }}
+                                                                @endisset Rs
+                                                            </b></p>
                                                     </div>
                                                 </div>
                                                 <div class="row justify-content-between">
@@ -351,7 +379,11 @@
                                                         <p><b>Total</b></p>
                                                     </div>
                                                     <div class="flex-sm-col col-auto">
-                                                        <p class="mb-1"><b>@isset($total) {{ $total }} @endisset Rs</b></p>
+                                                        <p class="mb-1"><b>
+                                                                @isset($total)
+                                                                    {{ $total }}
+                                                                @endisset Rs
+                                                            </b></p>
                                                     </div>
                                                 </div>
                                                 <hr class="my-0">

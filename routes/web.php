@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
@@ -48,3 +49,7 @@ Route::post('/cart/add/{id}', [CartController::class, 'add']);
 Route::post('/cart/remove/{id}', [CartController::class, 'remove']);
 Route::get('/checkout', 'OrderController@index')->name('checkout.index');
 Route::post('/checkout', 'OrderController@store')->name('checkout.store');
+Route::post('/place-order', [OrderController::class, 'place_order']);
+// Route::get('/order-confirmation', [OrderController::class, 'confirmation']);
+Route::get('/order-confirmation/{reference}', [OrderController::class, 'confirmation'])->name('order.confirmation');
+
