@@ -173,7 +173,9 @@
                                 <div class="card-body">
                                     <h3>Order Details</h3>
                                     <p>Order ID: {{ $orderDetails['order']->id }}</p>
-                                    <p>Order Date: {{ $orderDetails['order']->created_at }}</p>
+                                    <p>Order Date: {{ \Carbon\Carbon::parse($orderDetails['order']->created_at)->format('d F Y') }}</p>
+                                    
+                                    <p>Order Status: {{ $orderDetails['order']->status }}</p>
 
                                     <h3>Ordered Products</h3>
                                     <div class="table-responsive">
@@ -191,7 +193,7 @@
                                                     <tr>
                                                         <td>{{ $item->product->title }}</td>
                                                         <td>{{ $item->quantity }}</td>
-                                                        <td>${{ $item->product->price }}</td>
+                                                        <td>Rs {{ $item->product->price }}</td>
                                                         <!-- Add more table cells for additional product details -->
                                                     </tr>
                                                 @endforeach

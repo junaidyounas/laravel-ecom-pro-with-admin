@@ -39,6 +39,11 @@ route::get('/delete_category/{id}', [AdminController::class, 'delete_category'])
 route::get('/view_product', [AdminController::class, 'view_product']);
 route::post('/add_product', [AdminController::class, 'add_product']);
 route::get('/all_products', [AdminController::class, 'all_products']);
+
+route::get('/orders', [OrderController::class, 'all_orders']);
+Route::post('/update_order_status/{order}', [OrderController::class, 'update_order_status']);
+
+
 route::get('/delete_product/{id}', [AdminController::class, 'delete_product']);
 route::get('/edit_product/{id}', [AdminController::class, 'edit_product']);
 route::post('/confirm_update_product/{id}', [AdminController::class, 'confirm_update_product']);

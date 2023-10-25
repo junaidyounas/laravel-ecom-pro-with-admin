@@ -1,9 +1,9 @@
-<section class="slider_section ">
+<section class="slider_section " >
     <div class="slider_bg_box">
         <img src="images/slider-bg.jpg" alt="">
     </div>
-    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel" >
+        <div class="carousel-inner" >
             <div class="carousel-item active">
                 <div class="container ">
                     <div class="row">
@@ -11,15 +11,13 @@
                             <div class="detail-box">
                                 <h1>
                                     <span>
-                                        Sale 20% Off
+                                        Dream World
                                     </span>
                                     <br>
-                                    On Everything
+                                    {{-- To Buy Everything --}}
                                 </h1>
                                 <p>
-                                    Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic?
-                                    Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel
-                                    architecto veritatis delectus repellat modi impedit sequi.
+                                    Freedom to Shop Anytime
                                 </p>
                                 <div class="btn-box">
                                     <a href="" class="btn1">
@@ -38,15 +36,13 @@
                             <div class="detail-box">
                                 <h1>
                                     <span>
-                                        Sale 20% Off
+                                        Buy Now
                                     </span>
                                     <br>
-                                    On Everything
+                                    {{-- On Everything --}}
                                 </h1>
                                 <p>
-                                    Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic?
-                                    Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel
-                                    architecto veritatis delectus repellat modi impedit sequi.
+                                     Your Desires, Our Necessity
                                 </p>
                                 <div class="btn-box">
                                     <a href="" class="btn1">
@@ -65,15 +61,13 @@
                             <div class="detail-box">
                                 <h1>
                                     <span>
-                                        Sale 20% Off
+                                       Our Services
                                     </span>
                                     <br>
-                                    On Everything
+                                    {{-- On Everything --}}
                                 </h1>
                                 <p>
-                                    Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic?
-                                    Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel
-                                    architecto veritatis delectus repellat modi impedit sequi.
+                                    Everything Under One Roof
                                 </p>
                                 <div class="btn-box">
                                     <a href="" class="btn1">

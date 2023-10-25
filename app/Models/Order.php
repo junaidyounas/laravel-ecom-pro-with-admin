@@ -23,9 +23,9 @@ class Order extends Model
     }
 
     // app/Models/Order.php
-    public function markAsShipped()
+    public function changeStatus($status)
     {
-        $this->status = 'shipped';
+        $this->status = $status;
         $this->save();
     }
 }

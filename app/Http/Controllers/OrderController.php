@@ -113,4 +113,25 @@ class OrderController extends Controller
         // Render the confirmation view with order, order item details, and ordered products
         return view('home.order.confirmation', compact('orderDetails'));
     }
+
+    public function all_orders()
+    {
+        $orders = Order::all();
+        return view('admin.pages.orders', compact('orders'));
+    }
+
+    public function update_order_status(Request $request, Order $order)
+    {
+        $request->validate([
+            'status' => 'required|in:dispatched,delivered,completed,shipped,processing',
+        ]);
+
+        // Update the order status
+        $order->status = $request->input('status');
+        $order->save();
+
+        return back()->with('message', 'Order status updated successfully');
+    }
 }
+
+
