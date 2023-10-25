@@ -41,6 +41,8 @@ route::post('/add_product', [AdminController::class, 'add_product']);
 route::get('/all_products', [AdminController::class, 'all_products']);
 
 route::get('/orders', [OrderController::class, 'all_orders']);
+
+Route::get('/order_detail/{id}', [OrderController::class, 'single_order'])->name('pages.single_order');
 Route::post('/update_order_status/{order}', [OrderController::class, 'update_order_status']);
 
 

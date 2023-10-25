@@ -52,7 +52,9 @@
                                                     <td>{{ $order->phone }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d F Y') }}
                                                     <td>{{ \Carbon\Carbon::parse($order->updated_at)->format('d F Y') }}
-                                                    <td class="{{ $order->status !== 'completed' ? 'text-danger' : 'text-success' }}">{{ $order->status }}</td>
+                                                    <td
+                                                        class="{{ $order->status !== 'completed' ? 'text-danger' : 'text-success' }}">
+                                                        {{ $order->status }}</td>
                                                     <td>
                                                         <form method="POST"
                                                             action="{{ url('update_order_status', $order->id) }}">
@@ -76,7 +78,7 @@
                                                                 class="btn btn-primary">Update</button>
                                                         </form>
                                                     </td>
-                                                    <td><a href="{{ url('edit_product', $order->id) }}"><label
+                                                    <td><a href="{{ url('order_detail', $order->id) }}"><label
                                                                 class="badge badge-success">Open</label></a></td>
 
                                                 </tr>

@@ -88,7 +88,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($orderId);
 
         // Retrieve order items associated with the order, including product details
-        $orderItems = OrderItem::where('order_id', $order->id)->with('product')->get();
+        $orderItems = OrderItem::where('order_id', $order->id)->with('product.images')->get();
 
         // Create a custom object or array to hold order and product details
         $orderDetails = [
@@ -131,6 +131,20 @@ class OrderController extends Controller
         $order->save();
 
         return back()->with('message', 'Order status updated successfully');
+    }
+
+    public function single_order($id){
+        // Retrieve the order based on the provided reference
+        $order = Order::where('id', $id)->first();
+
+        if (!$order) {
+            return redirect('/')->with('error', 'Order not found.');
+        }
+
+        $orderDetails = $this->getOrderWithProductDetails($order->id);
+        // dd($orderDetails);
+        // Render the confirmation view with order, order item details, and ordered products
+        return view('admin.pages.single_order', compact('orderDetails'));
     }
 }
 
