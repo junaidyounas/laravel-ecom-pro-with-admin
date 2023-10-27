@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CustomAuthController;
+
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
+use Laravel\Fortify\RoutePath;
+use Laravel\Fortify\Features;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +36,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
-Route::get('/signin', 'Auth\LoginController@showLoginForm')->name('login');
 route::get('/', [HomeController::class, 'redirect']);
+route::get('/register/shop', [CustomAuthController::class, 'view_register']);
+route::post('/register/shop', [CustomAuthController::class, 'create']);
 route::get('/product_detail/{id}', [HomeController::class, 'product_detail']);
 route::get('/view_category', [AdminController::class, 'view_category']);
 route::post('/add_category', [AdminController::class, 'add_category']);
