@@ -6,8 +6,8 @@
         </x-slot>
 
         <x-validation-errors class="mb-4" />
-        <h1 style="font-size: 30px;">User Register</h1>
-        <form method="POST" action="{{ route('register') }}">
+        <h1 style="font-size: 30px;">Shop Register</h1>
+        <form method="POST" action="{{ url('register/shop') }}">
             @csrf
 
             <div>
@@ -16,7 +16,7 @@
                     autofocus autocomplete="name" />
             </div>
 
-            <div>
+            <div class="mt-4">
                 <x-label for="shop_name" value="{{ __('Shop Name') }}" />
                 <x-input id="shop_name" class="block mt-1 w-full" type="text" name="shop_name" :value="old('shop_name')" required
                     autofocus autocomplete="shop_name" />
@@ -44,13 +44,13 @@
 
             <div style="margin-top: 10px;">
                 <x-label for="post_code" value="{{ __('Post Code') }}" />
-                <x-input id="post_code" class="block mt-1 w-full" type="text" name="post_code" :value="old('shop_name')"
+                <x-input id="post_code" class="block mt-1 w-full" type="text" name="post_code" :value="old('post_code')"
                     required autofocus autocomplete="post_code" />
             </div>
 
             <div style="margin-top: 10px;">
                 <x-label for="province" value="{{ __('Province') }}" />
-                <x-input id="province" class="block mt-1 w-full" type="text" name="province" :value="old('shop_name')"
+                <x-input id="province" class="block mt-1 w-full" type="text" name="province" :value="old('province')"
                     required autofocus autocomplete="province" />
             </div>
 

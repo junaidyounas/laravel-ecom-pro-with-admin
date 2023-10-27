@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->boolean('post_code')->nullable();
-            $table->boolean('province')->nullable();
+            $table->string('post_code')->nullable();
+            $table->string('province')->nullable();
 
         });
     }
