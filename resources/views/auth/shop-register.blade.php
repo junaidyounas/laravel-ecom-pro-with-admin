@@ -108,7 +108,7 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
-<script>
+{{-- <script>
     @if (session('message'))
         swal({
             icon: 'success',
@@ -118,4 +118,4 @@
 
         });
     @endif
-</script>
+</script> --}}

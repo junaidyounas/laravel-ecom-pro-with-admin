@@ -17,15 +17,20 @@ use Illuminate\Support\Facades\Session;
 class CustomAuthController extends Controller
 {
     use PasswordValidationRules;
-
     public function redirect()
     {
-
         if (Auth::check()) {
-            $usertype = Auth::user()->usertype;
+            $user = Auth::user();
+            if ($user->usertype == '1') {
+                if ($user->is_active == '1') {
+                    return view('admin.home');
+                } else {
 
-            if ($usertype == '1') {
-                return view('admin.home');
+                    Auth::logout(); // Log the user out
+                    $products = Product::paginate(3);
+                    Session::flash("message", "Shop is not activated yet");
+                    return view('home.userpage', compact('products'));
+                }
             } else {
                 $products = Product::paginate(3);
                 return view('home.userpage', compact('products'));
@@ -34,8 +39,6 @@ class CustomAuthController extends Controller
             $products = Product::paginate(3);
             return view('home.userpage', compact('products'));
         }
-
-
     }
     //
     public function view_register()
@@ -76,5 +79,5 @@ class CustomAuthController extends Controller
         Session::flash('message', "Your shop has been successfully created. You'll receive a confirmation email shortly.");
 
         return redirect()->route('register/shop')->with('success', "Your shop has been successfully created. You'll receive a confirmation email shortly."); // Replace with your actual route
-}
+    }
 }
