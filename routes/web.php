@@ -36,9 +36,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
-route::get('/', [HomeController::class, 'redirect']);
+route::get('/', [CustomAuthController::class, 'redirect']);
 route::get('/register/shop', [CustomAuthController::class, 'view_register']);
-route::post('/register/shop', [CustomAuthController::class, 'create']);
+route::post('/register/shop', [CustomAuthController::class, 'create'])->name('register/shop');;
 route::get('/product_detail/{id}', [HomeController::class, 'product_detail']);
 route::get('/view_category', [AdminController::class, 'view_category']);
 route::post('/add_category', [AdminController::class, 'add_category']);

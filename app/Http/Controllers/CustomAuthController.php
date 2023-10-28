@@ -3,18 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Fortify\PasswordValidationRules;
+use App\Models\Product;
 use Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Facades\Session;
 
 
 class CustomAuthController extends Controller
 {
     use PasswordValidationRules;
 
+    public function redirect()
+    {
+
+        if (Auth::check()) {
+            $usertype = Auth::user()->usertype;
+
+            if ($usertype == '1') {
+                return view('admin.home');
+            } else {
+                $products = Product::paginate(3);
+                return view('home.userpage', compact('products'));
+            }
+        } else {
+            $products = Product::paginate(3);
+            return view('home.userpage', compact('products'));
+        }
+
+
+    }
     //
     public function view_register()
     {
@@ -38,7 +60,7 @@ class CustomAuthController extends Controller
             ],
         ]);
 
-        return User::create([
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'shop_name' => $request->shop_name,
@@ -51,7 +73,8 @@ class CustomAuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // return redirect()->route('order.confirmation', ['reference' => $reference]);
+        Session::flash('message', "Your shop has been successfully created. You'll receive a confirmation email shortly.");
 
-    }
+        return redirect()->route('register/shop')->with('success', "Your shop has been successfully created. You'll receive a confirmation email shortly."); // Replace with your actual route
+}
 }

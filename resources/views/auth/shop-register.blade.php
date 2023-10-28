@@ -1,5 +1,5 @@
 <x-guest-layout>
-          <base href="/public" />
+    <base href="/public" />
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -7,6 +7,8 @@
 
         <x-validation-errors class="mb-4" />
         <h1 style="font-size: 30px;">Shop Register</h1>
+
+
         <form method="POST" action="{{ url('register/shop') }}">
             @csrf
 
@@ -18,8 +20,8 @@
 
             <div class="mt-4">
                 <x-label for="shop_name" value="{{ __('Shop Name') }}" />
-                <x-input id="shop_name" class="block mt-1 w-full" type="text" name="shop_name" :value="old('shop_name')" required
-                    autofocus autocomplete="shop_name" />
+                <x-input id="shop_name" class="block mt-1 w-full" type="text" name="shop_name" :value="old('shop_name')"
+                    required autofocus autocomplete="shop_name" />
             </div>
 
 
@@ -106,3 +108,14 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
+<script>
+    @if (session('message'))
+        swal({
+            icon: 'success',
+            title: 'Success',
+            text: `{!! session('message') !!}`,
+            showConfirmButton: true, // Show "OK" button
+
+        });
+    @endif
+</script>
