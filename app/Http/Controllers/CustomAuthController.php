@@ -80,4 +80,18 @@ class CustomAuthController extends Controller
 
         return redirect()->route('register/shop')->with('success', "Your shop has been successfully created. You'll receive a confirmation email shortly."); // Replace with your actual route
     }
+
+    public function activate(User $user)
+    {
+        $user->update(['is_active' => true]);
+        Session::flash('message', "User has been activated.");
+        return redirect()->back();
+    }
+
+    public function deactivate(User $user)
+    {
+        $user->update(['is_active' => false]);
+        Session::flash('message', "User has been deactivated.");
+        return redirect()->back();
+    }
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CustomAuthController;
 
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
@@ -34,6 +35,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+
+    Route::get('/shops', [ShopController::class, 'index']);
+    Route::post('/shops/{user}/activate', [CustomAuthController::class, 'activate']);
+    Route::post('/shops/{user}/deactivate',[CustomAuthController::class, 'deactivate']);
 });
 
 route::get('/', [CustomAuthController::class, 'redirect']);
