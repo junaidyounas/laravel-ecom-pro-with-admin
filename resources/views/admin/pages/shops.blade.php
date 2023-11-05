@@ -37,6 +37,7 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
+                                                <th>Shop</th>
                                                 <th>Phone</th>
                                                 <th>Active</th>
                                                 <th>Superuser</th>
@@ -51,6 +52,7 @@
                                                 <tr>
                                                     <td>{{ $user->id }}</td>
                                                     <td>{{ $user->name }}</td>
+                                                    <td>{{ $user->shop_name }}</td>
                                                     <td>{{ $user->phone }}</td>
                                                     <td>
                                                         <div class="dropdown">

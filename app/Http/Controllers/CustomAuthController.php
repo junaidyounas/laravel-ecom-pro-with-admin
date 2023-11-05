@@ -111,6 +111,9 @@ class CustomAuthController extends Controller
     }
 
     public function show_user_login(){
+        if(Auth::check()){
+            return redirect()->intended('/'); // Redirect to the intended page after login
+        }
         return view('auth.user-login');
     }
 }
