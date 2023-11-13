@@ -94,4 +94,26 @@ class CustomAuthController extends Controller
         Session::flash('message', "User has been deactivated.");
         return redirect()->back();
     }
+
+    public function user_login(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->intended('/'); // Redirect to the intended page after login
+        } else {
+            Session::flash('error', "Invalid email or password");
+            return back();
+        }
+    }
+
+    public function show_user_login(){
+        if(Auth::check()){
+            return redirect()->intended('/'); // Redirect to the intended page after login
+        }
+        return view('auth.user-login');
+    }
 }

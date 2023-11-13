@@ -4,7 +4,7 @@
                 alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+        {{-- <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
         </button>
         <ul class="navbar-nav w-100">
@@ -13,8 +13,8 @@
                     <input type="text" class="form-control" placeholder="Search products">
                 </form>
             </li>
-        </ul>
-        <ul class="navbar-nav navbar-nav-right">
+        </ul> --}}
+        {{-- <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item dropdown d-none d-lg-block">
                 <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown"
                     aria-expanded="false" href="#">+ Create New Project</a>
@@ -198,7 +198,7 @@
                     <p class="p-3 mb-0 text-center">Advanced settings</p>
                 </div>
             </li>
-        </ul>
+        </ul> --}}
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
             data-toggle="offcanvas">
             <span class="mdi mdi-format-line-spacing"></span>
