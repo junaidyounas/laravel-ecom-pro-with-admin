@@ -24,7 +24,7 @@ use Laravel\Fortify\Features;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
 
 
 Route::middleware([
@@ -41,6 +41,10 @@ Route::middleware([
     Route::post('/shops/{user}/activate', [CustomAuthController::class, 'activate']);
     Route::post('/shops/{user}/deactivate',[CustomAuthController::class, 'deactivate']);
 });
+
+
+route::get('/user/login', [CustomAuthController::class, 'show_user_login']);
+route::post('/user/login', [CustomAuthController::class, 'user_login'])->name('user.login');
 
 route::get('/', [CustomAuthController::class, 'redirect']);
 route::get('/register/shop', [CustomAuthController::class, 'view_register']);

@@ -13,14 +13,14 @@
                         <span class="count bg-success"></span>
                     </div>
                     <div class="profile-name">
-                        <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
-                        <span>Gold Member</span>
+                        <h5 class="mb-0 font-weight-normal"> {{ Auth::user()->name }}</h5>
+                        {{-- <span>Gold Member</span> --}}
                     </div>
                 </div>
                 <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
                 <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
                     aria-labelledby="profile-dropdown">
-                    <a href="#" class="dropdown-item preview-item">
+                    {{-- <a href="#" class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
                             <div class="preview-icon bg-dark rounded-circle">
                                 <i class="mdi mdi-settings text-primary"></i>
@@ -51,7 +51,7 @@
                         <div class="preview-item-content">
                             <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
                         </div>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </li>
@@ -121,7 +121,7 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item menu-items">
+        {{-- <li class="nav-item menu-items">
             <a class="nav-link" href="pages/tables/basic-table.html">
                 <span class="menu-icon">
                     <i class="mdi mdi-table-large"></i>
@@ -172,6 +172,6 @@
                 </span>
                 <span class="menu-title">Documentation</span>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </nav>
