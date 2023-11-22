@@ -43,7 +43,7 @@ Route::middleware([
 });
 
 
-route::get('/user/login', [CustomAuthController::class, 'show_user_login']);
+route::get('/user/login', [CustomAuthController::class, 'show_user_login'])->name('user/login');
 route::post('/user/login', [CustomAuthController::class, 'user_login'])->name('user.login');
 
 route::get('/', [CustomAuthController::class, 'redirect']);
