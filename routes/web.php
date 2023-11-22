@@ -26,13 +26,7 @@ use Laravel\Fortify\Features;
 */
 Auth::routes();
 
-/**
- * Authentication
- */
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
