@@ -47,8 +47,8 @@ Route::get('/user/login', [CustomAuthController::class, 'show_user_login'])->nam
 Route::post('/user/login', [CustomAuthController::class, 'user_login'])->name('user.login');
 
 route::get('/', [CustomAuthController::class, 'redirect']);
-route::get('/register/shop', [CustomAuthController::class, 'view_register']);
-route::post('/register/shop', [CustomAuthController::class, 'create'])->name('register/shop');
+Route::get('/register/shop', [CustomAuthController::class, 'view_register']);
+Route::post('/register/shop', [CustomAuthController::class, 'create'])->name('register/shop');
 route::get('/product_detail/{id}', [HomeController::class, 'product_detail']);
 route::get('/view_category', [AdminController::class, 'view_category']);
 route::post('/add_category', [AdminController::class, 'add_category']);
