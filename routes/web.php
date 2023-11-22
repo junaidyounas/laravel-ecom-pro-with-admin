@@ -37,12 +37,13 @@ Route::middleware([
     })->name('dashboard');
 
 
-    Route::get('/shops', [ShopController::class, 'index']);
-    Route::post('/shops/{user}/activate', [CustomAuthController::class, 'activate']);
-    Route::post('/shops/{user}/deactivate',[CustomAuthController::class, 'deactivate']);
+    
 });
 
 
+Route::get('/admin/shops', [ShopController::class, 'index']);
+Route::post('/admin/shops/{user}/activate', [CustomAuthController::class, 'activate']);
+Route::post('/admin/shops/{user}/deactivate', [CustomAuthController::class, 'deactivate']);
 Route::get('/user/login', [CustomAuthController::class, 'show_user_login'])->name('user/login');
 Route::post('/user/login', [CustomAuthController::class, 'user_login'])->name('user.login');
 
