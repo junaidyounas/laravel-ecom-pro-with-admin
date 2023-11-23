@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Fortify\PasswordValidationRules;
+use App\Mail\CustomEmail;
 use App\Models\Product;
 use Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+use App\Notifications\VerifyEmailNotification;
 
 
 class CustomAuthController extends Controller
@@ -43,7 +47,7 @@ class CustomAuthController extends Controller
                     Session::flash('error', 'Your account is not active. Please contact the administrator.');
                     return back();
                 }
-                
+
             }
         } else {
             $products = Product::paginate(3);
@@ -64,6 +68,9 @@ class CustomAuthController extends Controller
     public function create_user(Request $request)
     {
 
+        $verificationToken = Str::random(60);
+
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -74,9 +81,10 @@ class CustomAuthController extends Controller
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'verification_token' => $verificationToken,
             'usertype' => '0',
             'is_active' => '0',
             'phone' => $request->phone,
@@ -86,6 +94,9 @@ class CustomAuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $verificationLink = route('verification.verifyEmail', ['token' => $verificationToken]);
+        Mail::to($user->email)->send(new CustomEmail('Welcome to ChungiApp', "$verificationLink"));
+
         Session::flash('message', "Your account has been successfully created. You'll receive a confirmation email shortly.");
 
         return redirect()->route('user/register')->with('success', "Your account has been successfully created. You'll receive a confirmation email shortly."); // Replace with your actual route
@@ -93,24 +104,25 @@ class CustomAuthController extends Controller
 
     public function create(Request $request)
     {
-
+        $verificationToken = Str::random(60);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
             'shop_name' => [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('users', 'shop_name'),
-                // Check uniqueness against the 'users' table and 'shop_name' column
-            ],
+                    'required',
+                    'string',
+                    'max:255',
+                    Rule::unique('users', 'shop_name'),
+                    // Check uniqueness against the 'users' table and 'shop_name' column
+                ],
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'verification_token' => $verificationToken,
             'shop_name' => $request->shop_name,
             'usertype' => '1',
             'is_active' => '0',
@@ -121,6 +133,8 @@ class CustomAuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $verificationLink = route('verification.verifyEmail', ['token' => $verificationToken]);
+        Mail::to($user->email)->send(new CustomEmail('Welcome to ChungiApp', "$verificationLink"));
         Session::flash('message', "Your shop has been successfully created. You'll receive a confirmation email shortly.");
 
         return redirect()->route('register/shop')->with('success', "Your shop has been successfully created. You'll receive a confirmation email shortly."); // Replace with your actual route
@@ -169,8 +183,9 @@ class CustomAuthController extends Controller
         }
     }
 
-    public function show_user_login(){
-        if(Auth::check()){
+    public function show_user_login()
+    {
+        if (Auth::check()) {
             return redirect()->intended('/'); // Redirect to the intended page after login
         }
         return view('auth.user-login');

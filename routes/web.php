@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\VerificationController;
 
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Laravel\Fortify\RoutePath;
@@ -53,6 +54,8 @@ Route::get('/user/register', [CustomAuthController::class, 'view_user_register']
 Route::post('/user/register', [CustomAuthController::class, 'create_user'])->name('user/register');
 
 Route::post('/logout', [CustomAuthController::class, 'logout'])->name('logout');
+Route::get('/verify-email/{token}', [VerificationController::class, 'verifyEmail'])->name('verification.verifyEmail');
+
 
 Route::get('/', [CustomAuthController::class, 'redirect']);
 Route::get('/register/shop', [CustomAuthController::class, 'view_register']);
