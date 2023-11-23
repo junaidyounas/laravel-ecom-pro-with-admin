@@ -63,7 +63,7 @@
                                     id="logincss">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('register') }}" class="btn btn-success" href="contact.html">Register</a>
+                                <a href="{{ route('user/register') }}" class="btn btn-success" href="contact.html">Register</a>
                             </li>
                         @endauth
                     @endif

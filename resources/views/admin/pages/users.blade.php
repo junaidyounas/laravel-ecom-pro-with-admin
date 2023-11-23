@@ -27,7 +27,7 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">All Shops Users</h4>
+                                <h4 class="card-title">All Site Users</h4>
 
                                 <p class="card-description"> Edit users
                                 </p>
@@ -37,10 +37,8 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
-                                                <th>Shop</th>
                                                 <th>Phone</th>
                                                 <th>Active</th>
-                                                <th>Superuser</th>
                                                 <th>Email</th>
                                                 <th>Address</th>
                                                 <th>Created at</th>
@@ -52,7 +50,6 @@
                                                 <tr>
                                                     <td>{{ $user->id }}</td>
                                                     <td>{{ $user->name }}</td>
-                                                    <td>{{ $user->shop_name }}</td>
                                                     <td>{{ $user->phone }}</td>
                                                     <td>
                                                         <div class="dropdown">
@@ -66,19 +63,18 @@
                                                             </button>
                                                             <div class="dropdown-menu"
                                                                 aria-labelledby="dropdownMenuIconButton{{ $user->id }}">
-                                                                <a onclick="activate_user(event)" href="/superuser/shops"
-                                                                    style="color: green"
+                                                                <a onclick="activate_user(event)"
+                                                                    href="/superuser/shops" style="color: green"
                                                                     class="dropdown-item activate-user"
                                                                     data-user-id="{{ $user->id }}">Activate</a>
-                                                                <a onclick="deactivate_user(event)" href="/superuser/shops"
-                                                                    style="color: red"
+                                                                <a onclick="deactivate_user(event)"
+                                                                    href="/superuser/shops" style="color: red"
                                                                     class="dropdown-item deactivate-user"
                                                                     data-user-id="{{ $user->id }}">Deactivate</a>
                                                             </div>
                                                         </div>
                                 </div>
                                 </td>
-                                <td>{{ $user->is_super_user }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->address }}</td>
                                 <td>{{ \Carbon\Carbon::parse($user->created_at)->format('d F Y') }}</td>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
@@ -41,11 +42,16 @@ Route::middleware([
 });
 
 
-Route::get('/admin/shops', [ShopController::class, 'index']);
-Route::post('/admin/shops/{user}/activate', [CustomAuthController::class, 'activate']);
-Route::post('/admin/shops/{user}/deactivate', [CustomAuthController::class, 'deactivate']);
+Route::get('/superuser/shops', [ShopController::class, 'index']);
+Route::get('/superuser/users', [UserController::class, 'index']);
+Route::post('/superuser/shops/{user}/activate', [CustomAuthController::class, 'activate']);
+Route::post('/superuser/shops/{user}/deactivate', [CustomAuthController::class, 'deactivate']);
 Route::get('/user/login', [CustomAuthController::class, 'show_user_login'])->name('user/login');
 Route::post('/user/login', [CustomAuthController::class, 'user_login'])->name('user.login');
+
+Route::get('/user/register', [CustomAuthController::class, 'view_user_register'])->name('user/register');
+Route::post('/user/register', [CustomAuthController::class, 'create_user'])->name('user/register');
+
 Route::post('/logout', [CustomAuthController::class, 'logout'])->name('logout');
 
 Route::get('/', [CustomAuthController::class, 'redirect']);

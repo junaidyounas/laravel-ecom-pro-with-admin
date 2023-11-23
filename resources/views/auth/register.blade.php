@@ -1,12 +1,15 @@
 <x-guest-layout>
+    <base href="/public" />
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
 
         <x-validation-errors class="mb-4" />
-        <h1 style="font-size: 30px;">User Register</h1>
-        <form method="POST" action="{{ route('register') }}">
+        <h1 style="font-size: 30px;">Register User</h1>
+
+
+        <form method="POST" action="{{ url('user/register') }}">
             @csrf
 
             <div>
@@ -14,8 +17,6 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
                     autofocus autocomplete="name" />
             </div>
-
-
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
@@ -37,13 +38,13 @@
 
             <div style="margin-top: 10px;">
                 <x-label for="post_code" value="{{ __('Post Code') }}" />
-                <x-input id="post_code" class="block mt-1 w-full" type="text" name="post_code" :value="old('shop_name')"
+                <x-input id="post_code" class="block mt-1 w-full" type="text" name="post_code" :value="old('post_code')"
                     required autofocus autocomplete="post_code" />
             </div>
 
             <div style="margin-top: 10px;">
                 <x-label for="province" value="{{ __('Province') }}" />
-                <x-input id="province" class="block mt-1 w-full" type="text" name="province" :value="old('shop_name')"
+                <x-input id="province" class="block mt-1 w-full" type="text" name="province" :value="old('province')"
                     required autofocus autocomplete="province" />
             </div>
 
@@ -88,7 +89,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    href="{{ route('login') }}">
+                    href="{{ route('user/login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
@@ -99,3 +100,14 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
+{{-- <script>
+    @if (session('message'))
+        swal({
+            icon: 'success',
+            title: 'Success',
+            text: `{!! session('message') !!}`,
+            showConfirmButton: true, // Show "OK" button
+
+        });
+    @endif
+</script> --}}

@@ -32,8 +32,18 @@ class CustomAuthController extends Controller
                     return view('home.userpage', compact('products'));
                 }
             } else {
-                $products = Product::paginate(3);
-                return view('home.userpage', compact('products'));
+                $user = auth()->user();
+
+                if ($user->is_active) {
+                    $products = Product::paginate(3);
+                    return view('home.userpage', compact('products'));
+                } else {
+                    // User is not active, logout and show an error message
+                    auth()->logout();
+                    Session::flash('error', 'Your account is not active. Please contact the administrator.');
+                    return back();
+                }
+                
             }
         } else {
             $products = Product::paginate(3);
@@ -44,6 +54,41 @@ class CustomAuthController extends Controller
     public function view_register()
     {
         return view('auth.shop-register');
+    }
+
+    public function view_user_register()
+    {
+        return view('auth.register');
+    }
+
+    public function create_user(Request $request)
+    {
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:15'],
+            'province' => ['required', 'string', 'max:30'],
+            'password' => $this->passwordRules(),
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'usertype' => '0',
+            'is_active' => '0',
+            'phone' => $request->phone,
+            'post_code' => (string) $request->input('post_code'),
+            'province' => $request->province,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+        ]);
+
+        Session::flash('message', "Your account has been successfully created. You'll receive a confirmation email shortly.");
+
+        return redirect()->route('user/register')->with('success', "Your account has been successfully created. You'll receive a confirmation email shortly."); // Replace with your actual route
     }
 
     public function create(Request $request)
@@ -102,10 +147,24 @@ class CustomAuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('/'); // Redirect to the intended page after login
+        $credentials = $request->only('email', 'password');
+
+        if (auth()->attempt($credentials)) {
+            // Check if the user is active
+            $user = auth()->user();
+
+            if ($user->is_active) {
+                // User is active, redirect to the intended page after login
+                return redirect()->intended('/');
+            } else {
+                // User is not active, logout and show an error message
+                auth()->logout();
+                Session::flash('error', 'Your account is not active. Please contact the administrator.');
+                return back();
+            }
         } else {
-            Session::flash('error', "Invalid email or password");
+            // Invalid email or password
+            Session::flash('error', 'Invalid email or password');
             return back();
         }
     }
