@@ -116,4 +116,17 @@ class CustomAuthController extends Controller
         }
         return view('auth.user-login');
     }
+
+    public function logout(Request $request)
+    {
+        // Add your custom logout logic here, if needed
+
+        Auth::logout(); // This will log the user out
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }

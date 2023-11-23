@@ -14,8 +14,8 @@
                 </form>
             </li>
         </ul> --}}
-        {{-- <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown d-none d-lg-block">
+        <ul class="navbar-nav navbar-nav-right">
+            {{-- <li class="nav-item dropdown d-none d-lg-block">
                 <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown"
                     aria-expanded="false" href="#">+ Create New Project</a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
@@ -157,7 +157,7 @@
                     <div class="dropdown-divider"></div>
                     <p class="p-3 mb-0 text-center">See all notifications</p>
                 </div>
-            </li>
+            </li> --}}
             <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                     <div class="navbar-profile">
@@ -168,7 +168,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                     aria-labelledby="profileDropdown">
-                    <h6 class="p-3 mb-0">Profile</h6>
+                    {{-- <h6 class="p-3 mb-0">Profile</h6>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('profile.show') }}" class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
@@ -179,7 +179,7 @@
                         <div class="preview-item-content">
                             <p class="preview-subject mb-1">Profile</p>
                         </div>
-                    </a>
+                    </a> --}}
                     <div class="dropdown-divider"></div>
                     <a  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" href="{{ route('logout') }}" class="dropdown-item preview-item">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -194,11 +194,11 @@
                             <p class="preview-subject mb-1">Log out</p>
                         </div>
                     </a>
-                    <div class="dropdown-divider"></div>
-                    <p class="p-3 mb-0 text-center">Advanced settings</p>
+                    {{-- <div class="dropdown-divider"></div>
+                    <p class="p-3 mb-0 text-center">Advanced settings</p> --}}
                 </div>
             </li>
-        </ul> --}}
+        </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
             data-toggle="offcanvas">
             <span class="mdi mdi-format-line-spacing"></span>

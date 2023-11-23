@@ -1,6 +1,6 @@
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card corona-gradient-card">
                     <div class="card-body py-0 px-0 px-sm-3">
@@ -25,8 +25,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div> --}}
+        {{-- <div class="row">
             <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -107,8 +107,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div> --}}
+        {{-- <div class="row">
             <div class="col-md-4 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -240,8 +240,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div> --}}
+        {{-- <div class="row">
             <div class="col-sm-4 grid-margin">
                 <div class="card">
                     <div class="card-body">
@@ -299,8 +299,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row ">
+        </div> --}}
+        {{-- <div class="row ">
             <div class="col-12 grid-margin">
                 <div class="card">
                     <div class="card-body">
@@ -437,8 +437,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div> --}}
+        {{-- <div class="row">
             <div class="col-md-6 col-xl-4 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -605,8 +605,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div> --}}
+        {{-- <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -675,11 +675,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <!-- content-wrapper ends -->
     <!-- partial:partials/_footer.html -->
-    <footer class="footer">
+    {{-- <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com
                 2020</span>
@@ -687,6 +687,6 @@
                     href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin
                     templates</a> from Bootstrapdash.com</span>
         </div>
-    </footer>
+    </footer> --}}
     <!-- partial -->
 </div>

@@ -46,6 +46,7 @@ Route::post('/admin/shops/{user}/activate', [CustomAuthController::class, 'activ
 Route::post('/admin/shops/{user}/deactivate', [CustomAuthController::class, 'deactivate']);
 Route::get('/user/login', [CustomAuthController::class, 'show_user_login'])->name('user/login');
 Route::post('/user/login', [CustomAuthController::class, 'user_login'])->name('user.login');
+Route::post('/logout', [CustomAuthController::class, 'logout'])->name('logout');
 
 Route::get('/', [CustomAuthController::class, 'redirect']);
 Route::get('/register/shop', [CustomAuthController::class, 'view_register']);

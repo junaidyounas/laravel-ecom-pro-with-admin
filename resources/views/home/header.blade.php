@@ -59,7 +59,7 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a href="{{ route('login') }}" class="btn btn-primary" href="contact.html"
+                                <a href="{{ route('user/login') }}" class="btn btn-primary" href="contact.html"
                                     id="logincss">Login</a>
                             </li>
                             <li class="nav-item">
