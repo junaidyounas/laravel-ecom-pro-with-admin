@@ -124,7 +124,7 @@ class CustomAuthController extends Controller
             'email' => $request->email,
             'verification_token' => $verificationToken,
             'shop_name' => $request->shop_name,
-            'usertype' => '1',
+            'usertype' => '0',
             'is_active' => '0',
             'phone' => $request->phone,
             'post_code' => (string) $request->input('post_code'),
