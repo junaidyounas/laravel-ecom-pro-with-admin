@@ -54,9 +54,9 @@
     @include('home.footer')
     <!-- footer end -->
     <div class="cpy_">
-        <p class="mx-auto">© 2023 All Rights Reserved By <a href="{{ url('/') }}">FARIG</a><br>
+        <p class="mx-auto">© 2023 All Rights Reserved By <a href="{{ url('/') }}">ChungiApp</a><br>
 
-            Distributed By <a href="{{ url('/') }}" target="_blank">FARIG</a>
+            Distributed By <a href="{{ url('/') }}" target="_blank">ChungiApp</a>
 
         </p>
     </div>

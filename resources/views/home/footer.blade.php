@@ -9,7 +9,7 @@
                     <div class="information_f">
                         <p><strong>ADDRESS:</strong> Lahore, Pakistan</p>
                         {{-- <p><strong>TELEPHONE:</strong> +91 987 654 3210</p> --}}
-                        <p><strong>EMAIL:</strong> admin@farig.pk</p>
+                        <p><strong>EMAIL:</strong> support@chungiapp.com</p>
                     </div>
                 </div>
             </div>
